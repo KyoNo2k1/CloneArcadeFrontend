@@ -1,0 +1,15 @@
+h3{
+    height: 50px;
+    font-size: 2rem;
+    margin: 0 15% 0 15%;
+  }
+  .CategoryCell {
+    font-size: 1%;
+    padding: auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1px;
+    
+  }
+  

@@ -1,0 +1,17 @@
+h3{
+  height: 50px;
+  font-size: 2rem;
+  margin: 0 15% 0 15%;
+}
+
+.GameCell {
+  background-color: rgb(199, 144, 225);
+  margin: 0 auto;
+  border-radius: 10px;
+  padding: auto;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  padding: 10%;
+}
