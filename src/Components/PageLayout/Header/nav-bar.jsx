@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import {
@@ -19,48 +19,54 @@ import axios from "axios";
 function NavBar({setShowLogin, setShowSignUp, user, setUser}) { 
 
     //search 
-    const searchItemInput = document.getElementById('navbar-search-input')
-    const elementProduct = document.querySelectorAll('.all-games')
-        function searchItem(){
-            let valueItem = searchItemInput.value.toLowerCase();
-            Array.from(elementProduct).forEach(function(element){
-                let nameItem = element.querySelector('.famous-game__name').textContent;
-                if (nameItem.toLowerCase().indexOf(valueItem) !== -1)
-                {
-                    element.style.display = 'block';
-                }
-                else
-                {
-                    element.style.display = 'none';
-                }
+
+    const [inputSearch, setInputSearch] = useState('')
+    const elementGame = document.querySelectorAll('.all-games')
+    function unSearch(e){
+        if (e.target.value === ''){
+            Array.from(elementGame).forEach(function(element){
+                element.style.display = 'block';
             })
-            checkEmpty(elementProduct);
         }
+        else
+        {
+            setInputSearch(e.target.value.toLowerCase())
+        }
+    }
+    function searchItem(){      
+
+        Array.from(elementGame).forEach(function(element){
+            let nameItem = element.querySelector('.game-cell__name').textContent;
+            if (nameItem.toLowerCase().indexOf(inputSearch) !== -1)
+            {
+                element.style.display = 'block';
+            }
+            else
+            {
+                element.style.display = 'none';
+            }
+        })
+        checkEmpty(elementGame);
+    }
         function checkEmpty(element){
             let count = 0;
             for(let i = 0; i < element.length; i++){
-                if (element[i].style.display == 'block')
+                if (element[i].style.display === 'block')
                 count++;
             }
-    
-            if (count == 0){
+
+            if (count === 0){
                 document.querySelector('#no__product').textContent = 'Can\'t find'; 
             }
             else{
                 document.querySelector('#no__product').textContent = ''; 
             }
         }
-        function unSearch(e){
-            if (e.target.value == ''){
-                Array.from(elementProduct).forEach(function(element){
-                    element.style.display = 'block';
-                })
-            }
-        }
+    
 
 
 
-    const [collapseOpen] = React.useState(false);
+    const [collapseOpen] = useState(false);
 
     let buttons;
 
@@ -123,7 +129,7 @@ function NavBar({setShowLogin, setShowSignUp, user, setUser}) {
                             </NavLink>
                             <DropdownItem divider tag="li" />
                             <NavLink tag="li">
-                                <Link to={'/home'} onClick = {handleLogout}>
+                                <Link to={'/'} onClick = {handleLogout}>
                                     <DropdownItem 
                                         className="nav-item"
                                     >Log out</DropdownItem>
@@ -210,7 +216,7 @@ function NavBar({setShowLogin, setShowSignUp, user, setUser}) {
     return (
         <nav className="navbar navbar-expand navbar-light fixed-top">
             <div className="nav-left-side">
-                <Link to={'/home'}>
+                <Link to={'/'}>
                     <img src={logo} className="navbar-logo" alt="logo" />
                 </Link>
                 <div className="navbar-search">

@@ -1,4 +1,4 @@
-import React, {useState,useRef,useEffect,useLayoutEffect} from "react";
+import React, {useState, useEffect} from "react";
 import axios from 'axios'
 import '../../../../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import './friend-list.css'
@@ -13,29 +13,24 @@ function FriendList({user}) {
     }
     
     const inputEmail = document.getElementById('friend-list__add-email')
+
     const [listFriend, setListFriend] = useState([])
-
-
-    useEffect(() => {
-        if(user!=null)
-        getFriend()
-    },[user])
-
-    console.log(listFriend);
-    console.log(user);
     const getFriend = () => {
         axios.get('/friend/get-by-user-id/' + user.id )
             .then(res => {
-                console.log(res.data.post);
-                setListFriend(res.data.post)
-
+                setListFriend(res.data.post);
             })
             .catch(err => {
                 console.log(err);
-            })
+            })       
     }
-    
 
+    useEffect(() => {
+        if (user!=null){
+            getFriend()
+        }
+    },[user])
+    
     const config = {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
     };
@@ -44,7 +39,7 @@ function FriendList({user}) {
     const AddFriendbyEmail = () => {
         if(inputEmail.value !=null)
         {
-            if(user.email != inputEmail.value)
+            if(user.email !== inputEmail.value)
             {
                 axios.post('/friend', {
                     UserID : user.id,
@@ -56,6 +51,7 @@ function FriendList({user}) {
                     .catch(err => {
                         alert('Friend exists or cant find')
                 })
+                inputEmail.value = null
             }
             else alert('Can not add your self')
         }
@@ -79,7 +75,7 @@ function FriendList({user}) {
     
                 <div className="list-group list-group-flush">
                     {   
-                        listFriend ? listFriend.map((friend) => (
+                        listFriend?.map((friend) => (
                             <div className="friend-info" key={friend.id}>
                                 <div className="friend-info__item">
                                     <img className="friend-list__title-img" src={axios.defaults.baseURL + 'uploads/images/users/' + friend.FriendAvatar} alt="" />
@@ -88,7 +84,6 @@ function FriendList({user}) {
                                 </div>
                             </div>
                             ))
-                            :null
                     }
                 </div>
                 <div className="friend-list__footer">

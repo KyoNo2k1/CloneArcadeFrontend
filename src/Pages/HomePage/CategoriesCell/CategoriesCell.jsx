@@ -1,22 +1,16 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React  from "react";
 import "./CategoriesCell.css"
 import "../GameCell/game-cell"
 
-function CategoriesCell({categories}){
-    
-    
-    return (
-        <div>
-            <div className="game-type">
-                        <a className="game-type-link"  href ={'/home/' + categories.CategoryName} >
-                            <div className="game-type__name">{categories.CategoryName}</div>
-                        </a>
-            </div>
-            
-        </div>
-    );
 
+function CategoriesCell({categories,filter}){
+    return (
+            <div className="game-category">
+                <a className="game-category-link" onClick={(e) => filter(`${categories.CategoryName}`,e)}>
+                    {categories.CategoryName}
+                </a>
+            </div>
+    );
 }
 
 export default CategoriesCell;

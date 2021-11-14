@@ -1,10 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './Styles/App.css';
 import './Styles/grid.css';
 import './Assets/Font/fontawesome-free-5.15.4-web/fontawesome-free-5.15.4-web/css/all.min.css';
 import './Assets/css/nucleo-icons.css'
 
+import bgImg from './Assets/Images/App/app-background.png'
 import DialogBox from './Components/Popup/DialogBox/dialog-box'
 import NavBar from './Components/PageLayout/Header/nav-bar';
 import HomePage from './Pages/HomePage/home-page';
@@ -18,6 +19,10 @@ import AboutUs from './Components/PageLayout/Footer/about-us';
 import axios from 'axios';
 
 function App() {
+  
+
+
+
   const [dialogState, setDialogState] = useState({
     title: "",
     message: "",
@@ -30,7 +35,6 @@ function App() {
   const [showChangePassword, setShowChangePassword] = useState(false);
 
   const [user, setUser] = useState(null);
-  const [game, setGame] = useState(null);
   const formRef = useRef();
 
   useEffect(() => {
@@ -44,26 +48,13 @@ function App() {
       }).catch(err => {
         console.log(err);
       });
+      console.log(localStorage.getItem('token'));
     }
   }, [localStorage.getItem('token')]);
 
-  // useEffect(() => {
-  //   if (localStorage.getItem('token') != null){
-  //     const config = {
-  //       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-  //     };
-
-  //     axios.get('games/', config).then(result => {
-  //       setGame(result.data);
-  //     }).catch(err => {
-  //       console.log(err);
-  //     });
-  //   }
-  // }, [localStorage.getItem('token')]);
-  // console.log(game);
   return (
     <BrowserRouter>
-      <div className="App">
+      <div className="App" style= {{backgroundImage: `url(${bgImg})`,backgroundSize: '1024px 300px'}}>
         <NavBar 
           setShowLogin={setShowLogin} 
           setShowSignUp={setShowSignUp} 
@@ -72,10 +63,9 @@ function App() {
         />
         
         <Switch>
-          <Route path="/home" component={() => <HomePage user={user}/>} />
+          <Route exact path="/" component={() => <HomePage user={user}/>} />
           <Route path='/game-detail' component={() => <GameDetail user={user}/>} />
           <Route path="/user-account" component={() => <UserAccount user={user} setShowChangePassword={setShowChangePassword}/>} />
-          <Redirect from="/" to="/home" />
         </Switch>
 
         <div className="App-footer">
