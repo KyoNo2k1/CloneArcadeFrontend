@@ -71,8 +71,6 @@ function HomePage({user}) {
             </div>
         </div>
       </div>
-
-    
   );
 }
 
