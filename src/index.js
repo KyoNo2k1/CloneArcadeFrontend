@@ -7,8 +7,8 @@ import axios from 'axios'
 
 // axios.defaults.baseURL = 'http://localhost:8000/';
 // axios.defaults.baseURL = 'https://arcadegame-gonin-server.herokuapp.com'
-// axios.defaults.baseURL = 'https://demoarcadegame.herokuapp.com/'
-axios.defaults.baseURL = 'https://gamearcade.herokuapp.com/'
+axios.defaults.baseURL = 'https://demoarcadegame.herokuapp.com/'
+// axios.defaults.baseURL = 'https://gamearcade.herokuapp.com/'
 
 ReactDOM.render(
   <React.StrictMode>
