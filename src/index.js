@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import axios from 'axios'
 
 // axios.defaults.baseURL = 'http://localhost:8000/';
-axios.defaults.baseURL = 'https://arcadegamewebsite.herokuapp.com/'
+axios.defaults.baseURL = 'https://demoarcadegame.herokuapp.com/'
 ReactDOM.render(
   <React.StrictMode>
     <App />
