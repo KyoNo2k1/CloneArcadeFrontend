@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './Styles/App.css';
-import './Styles/grid.css';
+import './Styles/grid.css'; 
 import './Assets/Font/fontawesome-free-5.15.4-web/fontawesome-free-5.15.4-web/css/all.min.css';
 import './Assets/css/nucleo-icons.css'
 
