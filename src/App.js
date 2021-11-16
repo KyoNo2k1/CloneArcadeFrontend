@@ -50,18 +50,6 @@ function App() {
     }
   }, [localStorage.getItem('token')]);
 
-  var routes = (
-    <Route name="app" path="/" handler={App}>
-        <Route name="joblist" path="/joblist" handler={JobList}/>
-        <DefaultRoute handler={Dashboard}/>
-        <NotFoundRoute handler={NotFound}/>
-    </Route>
-    );
-
-    Router.run(routes, Router.HistoryLocation, function (Handler) {
-      React.render(<Handler/>, document.body);
-    });
-
   return (
     <BrowserRouter>
       <div className="App" style= {{backgroundImage: `url(${bgImg})`,backgroundSize: '1024px 300px'}}>
@@ -73,10 +61,9 @@ function App() {
         />
         
         <Switch>
-          <Route exact path="/" component={() => <HomePage user={user}/>} />
-          <Route path='/game-detail' component={() => <GameDetail user={user} key={uuid()}/>} />
-          <Route path="/user-account" component={() => <UserAccount user={user} setShowChangePassword={setShowChangePassword} key={uuid()}/>} />   
-
+          <Route exact path="/*" component={() => <HomePage user={user}/>} />
+          <Route path='/*game-detail' component={() => <GameDetail user={user} key={uuid()}/>} />
+          <Route path="/*user-account" component={() => <UserAccount user={user} setShowChangePassword={setShowChangePassword} key={uuid()}/>} />
         </Switch>
 
         <div className="App-footer">
