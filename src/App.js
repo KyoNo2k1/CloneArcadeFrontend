@@ -51,7 +51,7 @@ function App() {
   }, [localStorage.getItem('token')]);
 
   return (
-    <BrowserRouter>
+    <BrowserRouter forceRefresh={true}>
       <div className="App" style= {{backgroundImage: `url(${bgImg})`,backgroundSize: '1024px 300px'}}>
         <NavBar 
           setShowLogin={setShowLogin} 
