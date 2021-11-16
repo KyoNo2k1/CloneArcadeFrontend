@@ -64,7 +64,7 @@ function App() {
           <Route exact path="/" component={() => <HomePage user={user}/>} />
           <Route path='/game-detail' component={() => <GameDetail user={user} key={uuid()}/>} />
           <Route path="/user-account" component={() => <UserAccount user={user} setShowChangePassword={setShowChangePassword} key={uuid()}/>} />
-        </Switch> 
+        </Switch>
 
         <div className="App-footer">
           <AboutUs/>
