@@ -75,8 +75,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={() => <HomePage user={user}/>} />
           <Route path='/game-detail' component={() => <GameDetail user={user} key={uuid()}/>} />
-          <Route path="/user-account" component={() => <UserAccount user={user} setShowChangePassword={setShowChangePassword} key={uuid()}/>} />
-          <Redirect from="/" to= "/game-detail" exact />
+          <Route path="/user-account" component={() => <UserAccount user={user} setShowChangePassword={setShowChangePassword} key={uuid()}/>} />   
 
         </Switch>
 
