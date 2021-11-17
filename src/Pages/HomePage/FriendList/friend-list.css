@@ -29,6 +29,7 @@
 .friend-list__title-img,
 .friend-list__friend-img {
   height: 35px;
+  width: 35px;
   margin-right: 5px;
   border-radius: 50%;
 }
